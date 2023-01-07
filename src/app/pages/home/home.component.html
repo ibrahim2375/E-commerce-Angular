@@ -1,0 +1,26 @@
+<app-products-header
+  (selectedCategory)="onSelectNewCategory($event)"
+  (columsStyleChange)="onColumsStyleProductsUpdate($event)"
+  (sortChange)="onSortChange($event)"
+></app-products-header>
+
+<!-- home page -->
+<mat-drawer-container class="min-h-full w-full" [autosize]="true">
+  <mat-drawer mode="side" #drawer class="flex items-center p-3">
+    <app-filters (selectedCategory)="onSelectNewCategory($event)"></app-filters>
+  </mat-drawer>
+  <mat-drawer-content class="p-3">
+    <!-- {{ category }} -->
+    <!-- <button (click)="drawer.toggle()">Close</button> -->
+    <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+      <mat-grid-tile *ngFor="let product of products">
+        <app-product
+          (addToCart)="onAddToCart($event)"
+          [product]="product"
+          class="w-full"
+          [fullWidthMode]="cols === 1"
+        ></app-product>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-drawer-content>
+</mat-drawer-container>

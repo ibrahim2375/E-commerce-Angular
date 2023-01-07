@@ -1,0 +1,45 @@
+<mat-card class="my-3">
+  <div class="flex justify-between">
+    <!-- sort -->
+    <div>
+      <button mat-button [matMenuTriggerFor]="sortMenu">
+        Sort By {{ sort }}
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <mat-menu #sortMenu="matMenu">
+        <button (click)="onSortUpdate('desc')" mat-menu-item>desc</button>
+        <button (click)="onSortUpdate('asc')" mat-menu-item>asc</button>
+      </mat-menu>
+    </div>
+    <!-- show items numbers -->
+    <div class="flex items-center">
+      <div>
+        <button mat-button [matMenuTriggerFor]="itemsNumber">
+          <span>CATEGORIES</span>
+          <mat-icon>expand_more</mat-icon>
+        </button>
+        <mat-menu #itemsNumber="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let category of categories"
+            (click)="onSelectCategory(category)"
+          >
+            {{ category }}
+          </button>
+        </mat-menu>
+      </div>
+      <!-- product style -->
+      <div class="ml-2 flex items-center">
+        <button>
+          <mat-icon (click)="onColumsUpdate(1)">view_list</mat-icon>
+        </button>
+        <button>
+          <mat-icon (click)="onColumsUpdate(3)">view_module</mat-icon>
+        </button>
+        <button>
+          <mat-icon (click)="onColumsUpdate(4)">view_comfy</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
